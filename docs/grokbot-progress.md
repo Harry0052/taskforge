@@ -8,7 +8,7 @@
 | P04 | PASS |
 | P05 | PASS |
 | P06 | PASS |
-| P07 | not started |
+| P07 | PASS |
 
 ## P01 — Research overlap and confirm the MVP
 
@@ -203,3 +203,29 @@
 - The workflow has not run on GitHub yet.
 
 **Next phase:** P07
+
+## P07 — Publish and verify on GitHub
+
+**Phase and status:** P07 PASS
+
+**Files changed:**
+
+- `docs/grokbot-progress.md` (this record)
+
+**Commands and results:**
+
+- Authorized destination `https://github.com/Harry0052/taskforge`, public, MIT license already in `LICENSE`. Connected GitHub account `Harry0052`. Remote `origin` is that repository. History on `main` was left in place. Nothing was merged.
+- Branch `cursor/taskforge-mvp-9197` pushed. Pull request: https://github.com/Harry0052/taskforge/pull/1
+- GitHub Actions on `1fb4763cdb8c293e5f612aa8d6e3c8cbb2cade3b` completed success for both the push run https://github.com/Harry0052/taskforge/actions/runs/45117841097 and the pull-request run https://github.com/Harry0052/taskforge/actions/runs/45117850561
+- Tag `v0.1.0` is applied to the commit that records this phase after that commit's workflow is green. The demo command from the tag is `taskforge demo`.
+
+**Artifact paths:**
+
+- https://github.com/Harry0052/taskforge/pull/1
+- https://github.com/Harry0052/taskforge/actions/runs/45117850561
+
+**Open issues:**
+
+- The owner merges the pull request. This phase does not merge to `main`.
+
+**Next phase:** none. P07 is the last phase in the playbook.
