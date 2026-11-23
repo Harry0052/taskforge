@@ -4,7 +4,7 @@
 | --- | --- |
 | P01 | PASS |
 | P02 | PASS |
-| P03 | not started |
+| P03 | PASS |
 | P04 | not started |
 | P05 | not started |
 | P06 | not started |
@@ -79,3 +79,35 @@
 - Regenerating the trace changes host wall times. Tests lock the checked-in checksums.
 
 **Next phase:** P03
+
+## P03 — Build the working core
+
+**Phase and status:** P03 PASS
+
+**Files changed:**
+
+- `src/taskforge/score.py`, `cost.py`, `train.py`, `analyze.py`, `report.py`
+- `src/taskforge/cli.py` (`analyze` command)
+- `tests/test_score.py`, `tests/test_cost.py`, `tests/test_analyze.py`
+
+**Commands and results:**
+
+- `taskforge analyze --dataset src/taskforge/data/dataset.json --trace src/taskforge/data/general_trace.json --costs src/taskforge/data/costs/demo.json --output /tmp/taskforge-p03` exited 0. Summary: eligible true, quality gate passed, specialist macro-F1 0.808042, equality at 4000, first strict saving at 4001. Report `/tmp/taskforge-p03/report.json`.
+- Per-class specialist recall on the locked 22-id set: custodial 0.600000 (support 5), electrical 1.000000 (support 5), hvac 1.000000 (support 6), plumbing 0.666667 (support 6). General trace keeps 1 timeout and 1 no-result inside the denominator.
+- Unfavorable profile (variable 0.030 vs 0.020, fixed 90 vs 10) returns `no_favorable_large_volume_break_even` with eligibility false while quality still passes.
+- Review prices 0.1000 and 0.5000 change the first strict-saving request and keep the same frozen macro-F1.
+- A gate of macro-F1 0.9900 still reports 4000 / 4001 and withholds eligibility.
+- `pytest`: 22 passed. Ruff check and format check passed.
+
+**Artifact paths:**
+
+- `/tmp/taskforge-p03/report.json`
+- `/tmp/taskforge-p03/report.md`
+- `/tmp/taskforge-p03/specialist-export.json`
+
+**Open issues:**
+
+- `taskforge demo` is not wired yet. `analyze` is the public path for this phase.
+- Specialist training time is host-specific and is not part of the cost arithmetic.
+
+**Next phase:** P04
