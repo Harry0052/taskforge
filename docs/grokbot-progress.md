@@ -7,7 +7,7 @@
 | P03 | PASS |
 | P04 | PASS |
 | P05 | PASS |
-| P06 | not started |
+| P06 | PASS |
 | P07 | not started |
 
 ## P01 — Research overlap and confirm the MVP
@@ -174,3 +174,32 @@
 - Hosted CI has not run. That is P07.
 
 **Next phase:** P06
+
+## P06 — Prepare a reproducible open-source release
+
+**Phase and status:** P06 PASS
+
+**Files changed:**
+
+- `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`, `THIRD_PARTY_NOTICES.md`
+- `.github/workflows/ci.yml`
+- `pyproject.toml` (SPDX `license = "MIT"`, setuptools >= 77)
+
+**Commands and results:**
+
+- Fresh copy in `/tmp/taskforge-clean` followed the README: venv, `pip install -r requirements-dev.txt`, `pip install -e . --no-deps`, `pytest` (35 passed), ruff check, ruff format check, `taskforge demo`. Result: eligible, macro-F1 0.808042, equality 4000, first strict saving 4001.
+- Wheel `taskforge-0.1.0-py3-none-any.whl` contains the dataset, trace, cost profiles, and MIT license. Installed into a new venv with `requirements.txt`, `taskforge demo` produced the same 4000 / 4001 decision.
+- A search of tracked text for credentials, private keys, and API tokens found only the word "secret" in `docs/validation.md` describing that the demo does not read one. No proprietary binaries.
+- GitHub Actions workflow uses `contents: read`, pins checkout `11d5960a326750d5838078e36cf38b85af677262`, setup-python `a26af69be951a213d495a4c3e4e4022e16d87065`, and upload-artifact `ea165f8d65b6e75b540449e92b4886f43607fa02`, and runs install, ruff, pytest, and `taskforge demo` without secrets. Hosted CI is still unverified.
+
+**Artifact paths:**
+
+- `.github/workflows/ci.yml`
+- `/tmp/taskforge-clean-demo/report.json`
+- `/tmp/tf-wheel-out/report.json`
+
+**Open issues:**
+
+- The workflow has not run on GitHub yet.
+
+**Next phase:** P07

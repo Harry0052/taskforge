@@ -1,12 +1,18 @@
 # TaskForge
 
-TaskForge compares one CPU specialist with a pinned general model on a four-label facilities work-order task. It reports macro-F1, per-class recall, and the request volume where the specialist's total cost becomes strictly lower. Measured timings stay separate from analyst-supplied costs.
+TaskForge tells a machine-learning engineer whether a small CPU classifier beats a pinned general model on one narrow task, and at which request volume the specialist's total cost becomes strictly lower.
 
-The general model in this repository is `lexical-generalist` revision `1.0.0`. One local run is stored in `src/taskforge/data/general_trace.json`. The demo reads that trace and does not download weights or call a paid API.
+The task is facilities work-order routing with four labels: `custodial`, `electrical`, `hvac`, and `plumbing`. The specialist is a TF-IDF logistic regression trained locally. The general model is `lexical-generalist` revision `1.0.0`. One local run is stored in the repository, so the demo does not download weights or call a paid API.
 
-## Setup
+Measured wall times and analyst-supplied dollar costs are reported in separate sections. The dollar result applies only to the horizon and the prices in the selected profile.
 
-Python 3.11 or newer. These commands were checked on Python 3.12.
+## Supported toolchain
+
+- CPython 3.11 or newer. Commands below were run on Linux x86_64 with CPython 3.12.3.
+- Packages pinned in `requirements.txt` (runtime) and `requirements-dev.txt` (tests and formatting).
+- No GPU, no paid API, and no extra hardware demo.
+
+## Clean install
 
 ```bash
 python3 -m venv .venv
@@ -15,12 +21,16 @@ python -m pip install -r requirements-dev.txt
 python -m pip install -e . --no-deps
 ```
 
-`--no-deps` keeps the pins in `requirements.txt`. Runtime only:
+Runtime only, without pytest or ruff:
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 python -m pip install -r requirements.txt
 python -m pip install -e . --no-deps
 ```
+
+`--no-deps` keeps those pins. On Windows, activate `.venv\Scripts\activate` instead of `source`.
 
 ## Demo
 
@@ -28,17 +38,25 @@ python -m pip install -e . --no-deps
 taskforge demo
 ```
 
-That trains the specialist on the shipped work orders, scores the recorded general-model trace on the same evaluation ids, and writes:
+The command trains the specialist, aligns predictions with the frozen trace, and writes:
 
-- `reports/demo/report.md` — human summary
-- `reports/demo/report.json` — the same figures in the output schema
-- `reports/demo/specialist-export.json` — linear coefficients for inspection, not loaded on the next run
+| File | What it is |
+| --- | --- |
+| `reports/demo/report.md` | Human summary |
+| `reports/demo/report.json` | Same figures, output schema 1.0.0 |
+| `reports/demo/specialist-export.json` | Coefficient inspection file. The next run retrains and does not load it. |
 
-Stdout is a stable JSON summary. The path to the human report is printed on stderr. Exit 0 means the run finished. `eligible` in the JSON is the recommendation; a finished run can still be ineligible when the quality gate fails or the forecast is before the crossover.
+Stdout is a JSON summary. Stderr prints the path to the human report. Exit 0 means the run finished. `eligible` can still be false when the quality gate fails or the forecast volume is before the crossover.
 
-On this fixture the modeled profile is an extra 60.00 USD fixed, 0.020 USD baseline per request, and 0.005 USD specialist per request. With the quality gate passed, totals tie at 4,000 requests and the specialist is strictly cheaper at 4,001. Dollar fields are analyst-supplied. Wall times are recorded beside them and are not turned into prices.
+**Expected result** for the shipped modeled profile (extra fixed cost 60.00 USD, baseline 0.020 USD per request, specialist 0.005 USD per request, quality gate passed):
 
-Use your own files with the same command flags, or with `analyze` when you want to name the output directory explicitly:
+- equality at **4,000** requests (both totals 80.00 USD)
+- first strict specialist saving at **4,001** (baseline 80.020 USD, specialist 80.005 USD)
+- specialist macro-F1 about **0.808** and minimum per-class recall **0.60**, above the gate of 0.75 and 0.50
+
+A copy of one such run is in `docs/evidence/p04/`. Training milliseconds in that file are from the machine that recorded it.
+
+Your own files, in the same shapes:
 
 ```bash
 taskforge demo \
@@ -48,39 +66,37 @@ taskforge demo \
   --output reports/mine
 ```
 
-A bad file stops before a report is written. For example:
+`taskforge analyze` is the same computation with required paths. `taskforge validate` checks a file without training.
+
+A bad file exits 2, writes no report, and prints a code plus a fix. Example:
 
 ```bash
 taskforge demo --dataset src/taskforge/data/invalid/leaked_family.json
 ```
 
-exits 2 and prints `template_family_leak` plus what to change. `taskforge --help` and `taskforge demo --help` list the flags.
-
-## Validate the shipped fixture
-
-```bash
-taskforge validate \
-  --dataset src/taskforge/data/dataset.json \
-  --trace src/taskforge/data/general_trace.json \
-  --costs src/taskforge/data/costs/demo.json
-```
-
-A valid bundle prints JSON with `"status": "valid"` and exits 0. Rejected inputs print `code: message` on stderr and exit 2. The expected codes are in `docs/oracle/validation.md`. The hand-calculated cost totals are in `docs/oracle/arithmetic.md`.
-
-```bash
-taskforge validate --dataset src/taskforge/data/invalid/leaked_family.json
-```
+`taskforge --help` and `taskforge demo --help` list the flags.
 
 ## Tests
 
 ```bash
 pytest
+ruff check src tests scripts
+ruff format --check src tests scripts
 ```
 
 ## Data
 
-Fixtures under `src/taskforge/data/` are original synthetic requests written for this repository (MIT). Checksums and the generator seed are in `src/taskforge/data/manifest.json`. Regenerating the trace with `python scripts/generate_fixtures.py` records a new host and new wall times; the checked-in trace is the one the tests lock.
+Files under `src/taskforge/data/` are original synthetic requests and analyst-supplied cost profiles written for this repository (MIT). Checksums and seed `17001` are in `src/taskforge/data/manifest.json`. No third-party corpus or model weights are included. Regenerating with `python scripts/generate_fixtures.py` records a new host and new wall times.
 
-## License
+Other cost profiles in `src/taskforge/data/costs/`:
 
-MIT. See `LICENSE`.
+| Profile | What it shows |
+| --- | --- |
+| `low_volume.json` | Same prices, forecast 500, which is before the first saving |
+| `high_volume.json` | Same prices, forecast 20,000 |
+| `high_review.json` | Variable cost from observed review rate times a 2.00 USD review price |
+| `unfavorable.json` | Specialist is more expensive per request and has a higher fixed cost, so there is no favorable large-volume break-even |
+
+## License and notices
+
+MIT. See `LICENSE`. Third-party package licenses are listed in `THIRD_PARTY_NOTICES.md`. Version history is in `CHANGELOG.md`. Contribution steps are in `CONTRIBUTING.md`. Vulnerability reports use GitHub private reporting; see `SECURITY.md`.
