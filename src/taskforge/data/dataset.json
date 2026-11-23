@@ -1,0 +1,615 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "facilities-work-order-routing",
+  "task_schema_version": "1.0.0",
+  "label_set": [
+    "custodial",
+    "electrical",
+    "hvac",
+    "plumbing"
+  ],
+  "items": [
+    {
+      "item_id": "wo-evalu-custodial-atrium-wax-01",
+      "text": "Atrium floor wax is sticky along the main path.",
+      "label": "custodial",
+      "template_family": "custodial-atrium-wax",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-custodial-atrium-wax-02",
+      "text": "Sticky wax on the atrium floor is catching shoes.",
+      "label": "custodial",
+      "template_family": "custodial-atrium-wax",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-custodial-cafe-spill-01",
+      "text": "Cafe spill near the pastry case is still wet.",
+      "label": "custodial",
+      "template_family": "custodial-cafe-spill",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-custodial-cafe-spill-02",
+      "text": "Wet spill by the cafe pastry case needs a cone.",
+      "label": "custodial",
+      "template_family": "custodial-cafe-spill",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-custodial-unreadable-01",
+      "text": "Loading dock spill note is an unreadable attachment from the night crew.",
+      "label": "custodial",
+      "template_family": "custodial-unreadable",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-electrical-office-outlet-01",
+      "text": "Office outlet behind the plotter has no power.",
+      "label": "electrical",
+      "template_family": "electrical-office-outlet",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-electrical-office-outlet-02",
+      "text": "The plotter outlet in the office is dead.",
+      "label": "electrical",
+      "template_family": "electrical-office-outlet",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-electrical-priority-hold-01",
+      "text": "Copy room breaker is hot and the ticket says priority hold until the vendor calls back.",
+      "label": "electrical",
+      "template_family": "electrical-priority-hold",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-electrical-warehouse-ballast-01",
+      "text": "Warehouse ballast will not strike over aisle four.",
+      "label": "electrical",
+      "template_family": "electrical-warehouse-ballast",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-electrical-warehouse-ballast-02",
+      "text": "Aisle four warehouse ballast flickers and then stays dark.",
+      "label": "electrical",
+      "template_family": "electrical-warehouse-ballast",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-hvac-clinic-duct-01",
+      "text": "Clinic duct airflow died after lunch.",
+      "label": "hvac",
+      "template_family": "hvac-clinic-duct",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-hvac-clinic-duct-02",
+      "text": "After lunch the clinic duct has no airflow at the nurses station.",
+      "label": "hvac",
+      "template_family": "hvac-clinic-duct",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-hvac-condensate-leak-01",
+      "text": "Condensate leak under the air handler by the east stair.",
+      "label": "hvac",
+      "template_family": "hvac-condensate-leak",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-hvac-condensate-leak-02",
+      "text": "East stair air handler has a condensate leak on the pad.",
+      "label": "hvac",
+      "template_family": "hvac-condensate-leak",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-hvac-lab-condenser-01",
+      "text": "The lab condenser is iced over and the coil is blocked.",
+      "label": "hvac",
+      "template_family": "hvac-lab-condenser",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-hvac-lab-condenser-02",
+      "text": "Ice on the lab condenser is stopping the coil.",
+      "label": "hvac",
+      "template_family": "hvac-lab-condenser",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-plumbing-cafe-drain-01",
+      "text": "Cafe drain is holding gray water at the hand sink.",
+      "label": "plumbing",
+      "template_family": "plumbing-cafe-drain",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-plumbing-cafe-drain-02",
+      "text": "The cafe hand sink drain will not empty.",
+      "label": "plumbing",
+      "template_family": "plumbing-cafe-drain",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-plumbing-dock-valve-01",
+      "text": "The dock sink valve is seized and will not isolate.",
+      "label": "plumbing",
+      "template_family": "plumbing-dock-valve",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-plumbing-dock-valve-02",
+      "text": "Seized valve at the dock sink needs a replacement.",
+      "label": "plumbing",
+      "template_family": "plumbing-dock-valve",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-plumbing-hall-toilet-01",
+      "text": "Hall toilet by the conference room is clogged.",
+      "label": "plumbing",
+      "template_family": "plumbing-hall-toilet",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-plumbing-hall-toilet-02",
+      "text": "Conference hall toilet clogged before the tour.",
+      "label": "plumbing",
+      "template_family": "plumbing-hall-toilet",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-train-custodial-dock-recycle-01",
+      "text": "Dock recycle bins were not swapped last night.",
+      "label": "custodial",
+      "template_family": "custodial-dock-recycle",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-dock-recycle-02",
+      "text": "Recycle bins at the dock are full and unsorted.",
+      "label": "custodial",
+      "template_family": "custodial-dock-recycle",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-dock-recycle-03",
+      "text": "Full recycle bins are blocking the dock pedestrian door.",
+      "label": "custodial",
+      "template_family": "custodial-dock-recycle",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-hall-spill-01",
+      "text": "Hall spill by the vending machine needs a mop.",
+      "label": "custodial",
+      "template_family": "custodial-hall-spill",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-hall-spill-02",
+      "text": "A spill in the east hall is still slick.",
+      "label": "custodial",
+      "template_family": "custodial-hall-spill",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-hall-spill-03",
+      "text": "East hall spill was reported after the coffee service.",
+      "label": "custodial",
+      "template_family": "custodial-hall-spill",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-lobby-trash-01",
+      "text": "Lobby trash cans overflowed before the morning tour.",
+      "label": "custodial",
+      "template_family": "custodial-lobby-trash",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-lobby-trash-02",
+      "text": "Morning tour found lobby trash piled beside the cans.",
+      "label": "custodial",
+      "template_family": "custodial-lobby-trash",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-lobby-trash-03",
+      "text": "Trash from the lobby event was left at the elevators.",
+      "label": "custodial",
+      "template_family": "custodial-lobby-trash",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-night-wax-01",
+      "text": "Night crew left wax streaks across the lobby stone.",
+      "label": "custodial",
+      "template_family": "custodial-night-wax",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-night-wax-02",
+      "text": "Lobby wax from the night crew is still tacky.",
+      "label": "custodial",
+      "template_family": "custodial-night-wax",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-custodial-night-wax-03",
+      "text": "Tacky wax streaks remain on the lobby stone.",
+      "label": "custodial",
+      "template_family": "custodial-night-wax",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-boiler-panel-01",
+      "text": "Electrical panel in the boiler room is warm to the touch.",
+      "label": "electrical",
+      "template_family": "electrical-boiler-panel",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-boiler-panel-02",
+      "text": "Boiler room panel door is hot around the main lugs.",
+      "label": "electrical",
+      "template_family": "electrical-boiler-panel",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-boiler-panel-03",
+      "text": "The boiler room electrical panel smells warm.",
+      "label": "electrical",
+      "template_family": "electrical-boiler-panel",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-copy-breaker-01",
+      "text": "Copy room breaker trips when the second printer starts.",
+      "label": "electrical",
+      "template_family": "electrical-copy-breaker",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-copy-breaker-02",
+      "text": "The copy room breaker is warm and trips after lunch.",
+      "label": "electrical",
+      "template_family": "electrical-copy-breaker",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-copy-breaker-03",
+      "text": "Breaker for the copy room will not stay closed.",
+      "label": "electrical",
+      "template_family": "electrical-copy-breaker",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-garage-ballast-01",
+      "text": "Parking garage ballast buzzes and the lamp flickers.",
+      "label": "electrical",
+      "template_family": "electrical-garage-ballast",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-garage-ballast-02",
+      "text": "Garage ballast will not strike the lamp on row C.",
+      "label": "electrical",
+      "template_family": "electrical-garage-ballast",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-garage-ballast-03",
+      "text": "Row C ballast in the garage hums and then drops the lamp.",
+      "label": "electrical",
+      "template_family": "electrical-garage-ballast",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-lobby-outlet-01",
+      "text": "Lobby floor outlet has no power for the display.",
+      "label": "electrical",
+      "template_family": "electrical-lobby-outlet",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-lobby-outlet-02",
+      "text": "The lobby outlet is dead on the north wall.",
+      "label": "electrical",
+      "template_family": "electrical-lobby-outlet",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-electrical-lobby-outlet-03",
+      "text": "North lobby outlet lost power overnight.",
+      "label": "electrical",
+      "template_family": "electrical-lobby-outlet",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-east-thermostat-01",
+      "text": "The east wing thermostat will not hold the afternoon setpoint.",
+      "label": "hvac",
+      "template_family": "hvac-east-thermostat",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-east-thermostat-02",
+      "text": "Setpoint drift on the east wing thermostat leaves the offices warm.",
+      "label": "hvac",
+      "template_family": "hvac-east-thermostat",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-east-thermostat-03",
+      "text": "East wing rooms miss the thermostat setpoint after lunch.",
+      "label": "hvac",
+      "template_family": "hvac-east-thermostat",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-floor-duct-01",
+      "text": "Supply duct airflow is weak on the second floor.",
+      "label": "hvac",
+      "template_family": "hvac-floor-duct",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-floor-duct-02",
+      "text": "Second floor supply duct has almost no airflow at the diffusers.",
+      "label": "hvac",
+      "template_family": "hvac-floor-duct",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-floor-duct-03",
+      "text": "Airflow in the second floor supply duct barely moves a tissue.",
+      "label": "hvac",
+      "template_family": "hvac-floor-duct",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-handler-condensate-01",
+      "text": "The mezzanine air handler condensate pan is full.",
+      "label": "hvac",
+      "template_family": "hvac-handler-condensate",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-handler-condensate-02",
+      "text": "Air handler condensate pan on the mezzanine needs emptying.",
+      "label": "hvac",
+      "template_family": "hvac-handler-condensate",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-handler-condensate-03",
+      "text": "Condensate from the mezzanine air handler is at the pan rim.",
+      "label": "hvac",
+      "template_family": "hvac-handler-condensate",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-roof-condenser-01",
+      "text": "The roof condenser short-cycles all afternoon.",
+      "label": "hvac",
+      "template_family": "hvac-roof-condenser",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-roof-condenser-02",
+      "text": "Short-cycling condenser on the roof starts every few minutes.",
+      "label": "hvac",
+      "template_family": "hvac-roof-condenser",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-hvac-roof-condenser-03",
+      "text": "Roof condenser ice rings the coil and then clears.",
+      "label": "hvac",
+      "template_family": "hvac-roof-condenser",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-closet-valve-01",
+      "text": "Isolation valve in the janitor closet will not turn.",
+      "label": "plumbing",
+      "template_family": "plumbing-closet-valve",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-closet-valve-02",
+      "text": "The closet isolation valve is seized shut.",
+      "label": "plumbing",
+      "template_family": "plumbing-closet-valve",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-closet-valve-03",
+      "text": "Janitor closet valve does not close all the way.",
+      "label": "plumbing",
+      "template_family": "plumbing-closet-valve",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-kitchen-drain-01",
+      "text": "Kitchen drain is slow and holding water after lunch.",
+      "label": "plumbing",
+      "template_family": "plumbing-kitchen-drain",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-kitchen-drain-02",
+      "text": "The kitchen drain holds standing water at the prep sink.",
+      "label": "plumbing",
+      "template_family": "plumbing-kitchen-drain",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-kitchen-drain-03",
+      "text": "Slow kitchen drain after the lunch service.",
+      "label": "plumbing",
+      "template_family": "plumbing-kitchen-drain",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-lobby-toilet-01",
+      "text": "Lobby toilet clogged again this morning.",
+      "label": "plumbing",
+      "template_family": "plumbing-lobby-toilet",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-lobby-toilet-02",
+      "text": "Morning clog in the lobby toilet will not clear.",
+      "label": "plumbing",
+      "template_family": "plumbing-lobby-toilet",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-lobby-toilet-03",
+      "text": "Lobby toilet is clogged and will not flush.",
+      "label": "plumbing",
+      "template_family": "plumbing-lobby-toilet",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-third-faucet-01",
+      "text": "The third floor faucet will not shut off.",
+      "label": "plumbing",
+      "template_family": "plumbing-third-faucet",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-third-faucet-02",
+      "text": "Third floor faucet drips into the basin all night.",
+      "label": "plumbing",
+      "template_family": "plumbing-third-faucet",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-train-plumbing-third-faucet-03",
+      "text": "Night drip from the third floor faucet soaks the cabinet.",
+      "label": "plumbing",
+      "template_family": "plumbing-third-faucet",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-valid-custodial-atrium-trash-01",
+      "text": "Atrium trash was not pulled after the reception.",
+      "label": "custodial",
+      "template_family": "custodial-atrium-trash",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-custodial-atrium-trash-02",
+      "text": "Reception trash is still bagged in the atrium.",
+      "label": "custodial",
+      "template_family": "custodial-atrium-trash",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-custodial-restroom-mop-01",
+      "text": "A mop bucket was left in the north restroom.",
+      "label": "custodial",
+      "template_family": "custodial-restroom-mop",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-custodial-restroom-mop-02",
+      "text": "North restroom still has a mop bucket in the aisle.",
+      "label": "custodial",
+      "template_family": "custodial-restroom-mop",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-electrical-hall-circuit-01",
+      "text": "Hall circuit for the badge readers keeps opening.",
+      "label": "electrical",
+      "template_family": "electrical-hall-circuit",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-electrical-hall-circuit-02",
+      "text": "Badge reader circuit in the hall drops twice a morning.",
+      "label": "electrical",
+      "template_family": "electrical-hall-circuit",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-electrical-lamp-voltage-01",
+      "text": "Voltage at the lamp whip in the shop is low.",
+      "label": "electrical",
+      "template_family": "electrical-lamp-voltage",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-electrical-lamp-voltage-02",
+      "text": "Shop lamp voltage sags when the compressor starts.",
+      "label": "electrical",
+      "template_family": "electrical-lamp-voltage",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-hvac-lobby-airflow-01",
+      "text": "Lobby airflow drops whenever the afternoon sun hits the glass.",
+      "label": "hvac",
+      "template_family": "hvac-lobby-airflow",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-hvac-lobby-airflow-02",
+      "text": "Afternoon lobby airflow never recovers after the doors cycle.",
+      "label": "hvac",
+      "template_family": "hvac-lobby-airflow",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-hvac-suite-filter-01",
+      "text": "The suite filter bank is loaded and the rooms stay stale.",
+      "label": "hvac",
+      "template_family": "hvac-suite-filter",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-hvac-suite-filter-02",
+      "text": "A loaded filter bank is starving the suite of supply air.",
+      "label": "hvac",
+      "template_family": "hvac-suite-filter",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-plumbing-floor-clog-01",
+      "text": "Floor drain clog on level one is backing up.",
+      "label": "plumbing",
+      "template_family": "plumbing-floor-clog",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-plumbing-floor-clog-02",
+      "text": "Level one floor drain is clogged after the rain.",
+      "label": "plumbing",
+      "template_family": "plumbing-floor-clog",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-plumbing-sink-pipe-01",
+      "text": "A loose pipe under the break room sink is sweating.",
+      "label": "plumbing",
+      "template_family": "plumbing-sink-pipe",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-valid-plumbing-sink-pipe-02",
+      "text": "Break room sink pipe joint is wet at the slip nut.",
+      "label": "plumbing",
+      "template_family": "plumbing-sink-pipe",
+      "split": "validation"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "facilities-work-order-routing",
+  "task_schema_version": "1.0.0",
+  "model": {
+    "name": "lexical-generalist",
+    "revision": "1.0.0",
+    "provider": "local",
+    "hardware": "fixture"
+  },
+  "run": {
+    "seed": 17001,
+    "started_at": "2026-11-23T00:00:00+00:00",
+    "host": "fixture",
+    "wall_time_ms_total": 0.1,
+    "randomness": "none"
+  },
+  "results": [
+    {
+      "item_id": "wo-miss-eval-01",
+      "output_label": "electrical",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.1,
+      "confidence": 1.0
+    }
+  ]
+}

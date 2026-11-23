@@ -1,0 +1,48 @@
+{
+  "access_date": "2026-11-23",
+  "fixture": {
+    "additional_fixed_cost_usd": "60.00",
+    "baseline_variable_usd": "0.020",
+    "specialist_variable_usd": "0.005",
+    "quality_gate": "passed",
+    "expected_artifact": {
+      "equality_requests": 4000,
+      "first_strict_saving_request": 4001
+    },
+    "acceptance_metric": "Decimal equality of total cost at 4000 requests and the first strict specialist saving at 4001, given a passed quality gate."
+  },
+  "taskforge_candidate": {
+    "evidence": "observed_run",
+    "equality_requests": 4000,
+    "first_strict_saving_request": 4001,
+    "total_at_4000": {"baseline": "80.000", "specialist": "80.000"},
+    "total_at_4001": {"baseline": "80.020", "specialist": "80.005"},
+    "matches_expected": true,
+    "command": "python3 decimal probe recorded in docs/grokbot-progress.md"
+  },
+  "taskdistill_formula_reimplementation": {
+    "evidence": "observed_run",
+    "note": "Reimplemented the published break-even in builder.py. The full taskdistill package was not executed: classifiers are macOS/Apple Silicon (mlx) and the install pulls model tooling this comparison does not need.",
+    "source": "https://github.com/B0yko/taskdistill/blob/3e803335cc9af45f82800c863bce4bf55040305d/src/taskdistill/report/builder.py",
+    "formula": "(labelling + training) / (teacher - cascade); requests = ceil(exact - 1e-9)",
+    "mapping": {"labelling_plus_training": 60.0, "teacher": 0.02, "cascade": 0.005},
+    "requests": 4000,
+    "exact": 4000.0,
+    "reports_tie_as_the_volume": true,
+    "reports_first_strict_saving_separately": false
+  },
+  "routellm": {
+    "evidence": "documentation",
+    "accepted_fixture": false,
+    "reason": "Public controller and eval CLI take router name, strong/weak model ids, and a cost threshold. They do not accept a specialist fixed cost, a human review price, or a locked four-label id set.",
+    "missing_inputs": ["specialist_fixed_cost", "human_review_cost", "locked_label_ids", "macro_f1_gate"]
+  },
+  "frugalgpt": {
+    "evidence": "documentation",
+    "accepted_fixture": false,
+    "reason": "LLMCascade optimizes a sequence of hosted LLM calls under a test-set budget. It does not price specialist training plus labeling as a fixed cost or report the first integer request after a tie.",
+    "missing_inputs": ["specialist_training_fixed_cost", "integer_tie_break", "template_family_split"]
+  },
+  "host": "Linux-6.12.113+-x86_64-with-glibc2.39",
+  "python": "3.12.3"
+}

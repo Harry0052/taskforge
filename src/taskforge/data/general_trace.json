@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "facilities-work-order-routing",
+  "task_schema_version": "1.0.0",
+  "model": {
+    "name": "lexical-generalist",
+    "revision": "1.0.0",
+    "provider": "local",
+    "hardware": "Linux x86_64 3.12.3"
+  },
+  "run": {
+    "seed": 17001,
+    "started_at": "2026-11-23T05:17:54+00:00",
+    "host": "Linux x86_64 3.12.3",
+    "wall_time_ms_total": 0.122,
+    "randomness": "none; keyword scores are a pure function of the text"
+  },
+  "results": [
+    {
+      "item_id": "wo-evalu-custodial-atrium-wax-01",
+      "output_label": null,
+      "timeout": false,
+      "scoring_status": "abstain",
+      "wall_time_ms": 0.013,
+      "confidence": 0.0
+    },
+    {
+      "item_id": "wo-evalu-custodial-atrium-wax-02",
+      "output_label": null,
+      "timeout": false,
+      "scoring_status": "abstain",
+      "wall_time_ms": 0.007,
+      "confidence": 0.0
+    },
+    {
+      "item_id": "wo-evalu-custodial-cafe-spill-01",
+      "output_label": "custodial",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.007,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-custodial-cafe-spill-02",
+      "output_label": "custodial",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.006,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-custodial-unreadable-01",
+      "output_label": null,
+      "timeout": false,
+      "scoring_status": "no_result",
+      "wall_time_ms": 0.001,
+      "confidence": null
+    },
+    {
+      "item_id": "wo-evalu-electrical-office-outlet-01",
+      "output_label": "electrical",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.005,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-electrical-office-outlet-02",
+      "output_label": "electrical",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.004,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-electrical-priority-hold-01",
+      "output_label": null,
+      "timeout": true,
+      "scoring_status": "timeout",
+      "wall_time_ms": 0.001,
+      "confidence": null
+    },
+    {
+      "item_id": "wo-evalu-electrical-warehouse-ballast-01",
+      "output_label": null,
+      "timeout": false,
+      "scoring_status": "abstain",
+      "wall_time_ms": 0.006,
+      "confidence": 0.0
+    },
+    {
+      "item_id": "wo-evalu-electrical-warehouse-ballast-02",
+      "output_label": null,
+      "timeout": false,
+      "scoring_status": "abstain",
+      "wall_time_ms": 0.004,
+      "confidence": 0.0
+    },
+    {
+      "item_id": "wo-evalu-hvac-clinic-duct-01",
+      "output_label": "hvac",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.004,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-hvac-clinic-duct-02",
+      "output_label": "hvac",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.005,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-hvac-condensate-leak-01",
+      "output_label": "plumbing",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.005,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-hvac-condensate-leak-02",
+      "output_label": "plumbing",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.005,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-hvac-lab-condenser-01",
+      "output_label": null,
+      "timeout": false,
+      "scoring_status": "abstain",
+      "wall_time_ms": 0.004,
+      "confidence": 0.0
+    },
+    {
+      "item_id": "wo-evalu-hvac-lab-condenser-02",
+      "output_label": null,
+      "timeout": false,
+      "scoring_status": "abstain",
+      "wall_time_ms": 0.004,
+      "confidence": 0.0
+    },
+    {
+      "item_id": "wo-evalu-plumbing-cafe-drain-01",
+      "output_label": "plumbing",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.004,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-plumbing-cafe-drain-02",
+      "output_label": "plumbing",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.004,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-plumbing-dock-valve-01",
+      "output_label": null,
+      "timeout": false,
+      "scoring_status": "abstain",
+      "wall_time_ms": 0.004,
+      "confidence": 0.0
+    },
+    {
+      "item_id": "wo-evalu-plumbing-dock-valve-02",
+      "output_label": null,
+      "timeout": false,
+      "scoring_status": "abstain",
+      "wall_time_ms": 0.004,
+      "confidence": 0.0
+    },
+    {
+      "item_id": "wo-evalu-plumbing-hall-toilet-01",
+      "output_label": "plumbing",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.004,
+      "confidence": 1.0
+    },
+    {
+      "item_id": "wo-evalu-plumbing-hall-toilet-02",
+      "output_label": "plumbing",
+      "timeout": false,
+      "scoring_status": "scored",
+      "wall_time_ms": 0.004,
+      "confidence": 1.0
+    }
+  ]
+}

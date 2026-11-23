@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "title": "TaskForge synthetic facilities fixtures",
+  "license": "MIT",
+  "terms": "Original synthetic work orders and cost profiles written for TaskForge. No third-party corpus, personal data, or model weights are included. The general-model trace is the output of one local run of lexical-generalist revision 1.0.0 and may be redistributed with this MIT repository.",
+  "generator": "scripts/generate_fixtures.py",
+  "seed": 17001,
+  "generalist": {
+    "name": "lexical-generalist",
+    "revision": "1.0.0",
+    "provider": "local"
+  },
+  "recording": {
+    "started_at": "2026-11-23T05:17:54+00:00",
+    "host": "Linux x86_64 3.12.3",
+    "evaluation_items": 22,
+    "status_counts": {
+      "abstain": 8,
+      "scored": 12,
+      "no_result": 1,
+      "timeout": 1
+    },
+    "scored_label_matches": 10,
+    "wall_time_ms_total": 0.122
+  },
+  "files": [
+    {
+      "path": "src/taskforge/data/costs/demo.json",
+      "bytes": 999,
+      "sha256": "06a9fff7ecde826fe21410158b546623119adbf0ddd82ef3b04844c1e7118466"
+    },
+    {
+      "path": "src/taskforge/data/costs/high_review.json",
+      "bytes": 840,
+      "sha256": "2a0f541e88811a61155dfccdde6983b33a595e77f7cc6805ee31608050102d7c"
+    },
+    {
+      "path": "src/taskforge/data/costs/high_volume.json",
+      "bytes": 934,
+      "sha256": "8e11bc00ea7050749350a0013902427558eae1c83fc75eed83764c5361b6b348"
+    },
+    {
+      "path": "src/taskforge/data/costs/low_volume.json",
+      "bytes": 931,
+      "sha256": "51b345a603955b76b35af80e18fbbbf3eb3018ef89ac443ea8591bbafb939c6b"
+    },
+    {
+      "path": "src/taskforge/data/costs/unfavorable.json",
+      "bytes": 950,
+      "sha256": "d3193d3dc06274fb7591d8d06bdded35555e90cf7efdf92b8d88914a87089356"
+    },
+    {
+      "path": "src/taskforge/data/dataset.json",
+      "bytes": 20654,
+      "sha256": "1e6dcc7900e9ab03a60f0c74d710169bc9841ae1cbc61a76302b14526f961a90"
+    },
+    {
+      "path": "src/taskforge/data/general_trace.json",
+      "bytes": 5099,
+      "sha256": "960dd2247a873c9859c4a531d9cc0a3f109b2c690166bbeccb1a032f98361a0a"
+    },
+    {
+      "path": "src/taskforge/data/invalid/bad_schema.json",
+      "bytes": 78,
+      "sha256": "ee47bd4188aa320197413730d4d15c73d0957e9fecf7944e3fca53f4178ffabd"
+    },
+    {
+      "path": "src/taskforge/data/invalid/float_money.json",
+      "bytes": 928,
+      "sha256": "0d041a78e44e0d788292556594a32bf377db380d1c463e7761f03abd1d2382a5"
+    },
+    {
+      "path": "src/taskforge/data/invalid/leaked_family.json",
+      "bytes": 836,
+      "sha256": "850b66051e6354e8e27d586e2099f3a43d4dfdc60dde025b760f6fdfb5de6eb4"
+    },
+    {
+      "path": "src/taskforge/data/invalid/missing_general_dataset.json",
+      "bytes": 1050,
+      "sha256": "fdf9ceed1f0f9d5d56539fa78039bc6059ed9a27552e6ede5df609c767b5d842"
+    },
+    {
+      "path": "src/taskforge/data/invalid/missing_general_trace.json",
+      "bytes": 614,
+      "sha256": "0f9afbf22e14b3d5b3279904fd65afbbc195c946a65a3d7a4b41f57ca2b030c6"
+    },
+    {
+      "path": "src/taskforge/data/invalid/mixed_labels.json",
+      "bytes": 424,
+      "sha256": "bd5ad5ee312f62e23ee31c49496e34782b89f01d69704ae29f2703cfb227a998"
+    },
+    {
+      "path": "src/taskforge/data/invalid/oversized_text.json",
+      "bytes": 2743,
+      "sha256": "8c6bb9e95ea170ced81278202057bc1a067e7db22dfd9d5881a1ab0d4d5a461a"
+    },
+    {
+      "path": "src/taskforge/data/invalid/repeated_ids.json",
+      "bytes": 684,
+      "sha256": "740d10c6526dd661eaad5e8e86cebd290859c01b9ab793fb58ecd0ac49bcfa47"
+    },
+    {
+      "path": "src/taskforge/data/schemas/cost-profile.schema.json",
+      "bytes": 2488,
+      "sha256": "325c8686cb0c9d9ba7e53d5125cb8a6928b0b76f6dc1fa140f0dd9bb526b7988"
+    },
+    {
+      "path": "src/taskforge/data/schemas/dataset.schema.json",
+      "bytes": 1261,
+      "sha256": "794a2882ddd0c98ddd7148d7a89cf0f915420c63b8805b390e0737dd23512321"
+    },
+    {
+      "path": "src/taskforge/data/schemas/trace.schema.json",
+      "bytes": 2345,
+      "sha256": "7e1ea479d9df4577fc0a69b6e54e429d085de948b059a660dd319b3c2640b39d"
+    }
+  ]
+}

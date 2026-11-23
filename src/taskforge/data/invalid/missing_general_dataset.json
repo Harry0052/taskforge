@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "facilities-work-order-routing",
+  "task_schema_version": "1.0.0",
+  "label_set": [
+    "custodial",
+    "electrical",
+    "hvac",
+    "plumbing"
+  ],
+  "items": [
+    {
+      "item_id": "wo-miss-train-01",
+      "text": "Train row for the missing-trace fixture.",
+      "label": "hvac",
+      "template_family": "hvac-miss-train",
+      "split": "train"
+    },
+    {
+      "item_id": "wo-miss-val-01",
+      "text": "Validation row for the missing-trace fixture.",
+      "label": "plumbing",
+      "template_family": "plumbing-miss-val",
+      "split": "validation"
+    },
+    {
+      "item_id": "wo-miss-eval-01",
+      "text": "First evaluation row, present in the trace.",
+      "label": "electrical",
+      "template_family": "electrical-miss-a",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-miss-eval-02",
+      "text": "Second evaluation row, omitted from the trace.",
+      "label": "custodial",
+      "template_family": "custodial-miss-b",
+      "split": "evaluation"
+    }
+  ]
+}

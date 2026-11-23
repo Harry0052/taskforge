@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "facilities-work-order-routing",
+  "task_schema_version": "1.0.0",
+  "label_set": [
+    "custodial",
+    "electrical",
+    "hvac",
+    "mechanical"
+  ],
+  "items": [
+    {
+      "item_id": "wo-mixed-01",
+      "text": "A label dictionary that is not the task dictionary.",
+      "label": "mechanical",
+      "template_family": "mechanical-one",
+      "split": "train"
+    }
+  ]
+}
