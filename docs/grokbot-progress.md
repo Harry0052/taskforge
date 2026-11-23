@@ -6,7 +6,7 @@
 | P02 | PASS |
 | P03 | PASS |
 | P04 | PASS |
-| P05 | not started |
+| P05 | PASS |
 | P06 | not started |
 | P07 | not started |
 
@@ -143,3 +143,34 @@
 - The checked-in evidence report includes this host's training milliseconds. A later demo run will differ in those timing fields only.
 
 **Next phase:** P05
+
+## P05 — Verify correctness, security, and performance
+
+**Phase and status:** P05 PASS
+
+**Files changed:**
+
+- `src/taskforge/report.py` (refuse a non-directory output path)
+- `src/taskforge/analyze.py` (quality-failure flag cleanup)
+- `tests/test_safeguards.py`, `tests/test_perf.py`, `tests/test_cost.py`
+- `pyproject.toml`, `requirements-dev.txt` (pytest 9.2.0)
+- `docs/validation.md`
+
+**Commands and results:**
+
+- `pytest`: 35 passed in 0.95 s. `ruff check`, `ruff format --check`, and `python -m compileall` passed.
+- Fresh `taskforge demo --output /tmp/taskforge-p05-fresh`: exit 0 in 0.94 s including interpreter startup (0.025 s after import). Eligible, macro-F1 0.808042, equality 4000, first strict saving 4001. Budget is 15 s. Fixture directory is 47,953 bytes.
+- OSV query on 2026-11-23: runtime pins have 0 advisories. pytest 8.4.2 had GHSA-6w46-j5rx-g56g (fixed in 9.0.3). Pin moved to 9.2.0; a repeat query returned 0 advisories. `pip-audit` could not create a virtualenv because `python3-venv` is absent, so OSV was the check that ran.
+- New rejections covered: unknown trace schema, a trace label outside the dictionary, component sums that do not match fixed cost, negative money, an oversized file, and an output path that is a file (exit 2, file unchanged).
+
+**Artifact paths:**
+
+- `docs/validation.md`
+- `/tmp/taskforge-p05-fresh/report.json`
+
+**Open issues:**
+
+- Release notes, security contact, contribution guide, and the GitHub Actions workflow are not written yet.
+- Hosted CI has not run. That is P07.
+
+**Next phase:** P06

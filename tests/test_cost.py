@@ -39,6 +39,20 @@ def test_higher_variable_and_fixed_cost_never_breaks_even() -> None:
     assert result["first_strict_saving_request"] is None
 
 
+def test_non_integer_ratio_uses_the_ceiling_request() -> None:
+    result = solve_crossover(
+        baseline_fixed=Decimal("0"),
+        baseline_variable=Decimal("0.010"),
+        specialist_fixed=Decimal("60"),
+        specialist_variable=Decimal("0.003"),
+    )
+    assert result["equality_requests"] is None
+    assert result["first_strict_saving_request"] == 8572
+    assert Decimal(result["totals_at_first_strict_saving"]["specialist_total"]) < Decimal(
+        result["totals_at_first_strict_saving"]["baseline_total"]
+    )
+
+
 def test_review_price_moves_crossover_without_a_quality_input() -> None:
     frozen_quality = {"macro_f1": "0.910000", "per_class_recall": ["1", "1", "0.8", "0.9"]}
     low = _reviewed(Decimal("0.10"))

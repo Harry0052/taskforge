@@ -134,3 +134,4 @@ def test_toolchain_imports() -> None:
 
     assert numpy.__version__ == "2.2.6"
     assert sklearn.__version__ == "1.9.1"
+    assert pytest.__version__ == "9.2.0"

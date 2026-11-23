@@ -196,7 +196,7 @@ def _recommendation(
     if not quality["passed"]:
         return {
             "eligible": False,
-            "scenario_shown": crossover["outcome"] == "finite_crossover" or True,
+            "scenario_shown": True,
             "reason": (
                 "The specialist missed the quality gate. Cost arithmetic is still reported "
                 "and no eligible recommendation is made."

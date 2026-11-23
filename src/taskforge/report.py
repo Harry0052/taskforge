@@ -6,10 +6,23 @@ import json
 from pathlib import Path
 from typing import Any
 
+from taskforge.errors import TaskForgeError
+
 
 def write_report(result: dict[str, Any], output_dir: Path) -> dict[str, str]:
     """Write only inside `output_dir`. Returns the file paths."""
-    output_dir.mkdir(parents=True, exist_ok=True)
+    if output_dir.exists() and not output_dir.is_dir():
+        raise TaskForgeError(
+            "output_path",
+            f"{output_dir} exists and is not a directory. Choose a directory for the report.",
+        )
+    try:
+        output_dir.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        raise TaskForgeError(
+            "output_path",
+            f"could not create output directory {output_dir}: {exc}",
+        ) from exc
     resolved = output_dir.resolve()
     report_json = _inside(resolved, "report.json")
     report_md = _inside(resolved, "report.md")
