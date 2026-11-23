@@ -3,7 +3,7 @@
 | Phase | Status |
 | --- | --- |
 | P01 | PASS |
-| P02 | not started |
+| P02 | PASS |
 | P03 | not started |
 | P04 | not started |
 | P05 | not started |
@@ -42,3 +42,40 @@
 - Dollar costs stay analyst-supplied. Wall-clock measurements are stored beside them.
 
 **Next phase:** P02
+
+## P02 — Create the repository and data contracts
+
+**Phase and status:** P02 PASS
+
+**Files changed:**
+
+- `pyproject.toml`, `requirements.txt`, `requirements-dev.txt`, `README.md`, `.gitignore`
+- `src/taskforge/` package, validator, pinned generalist, JSON Schemas, synthetic fixtures, manifest
+- `scripts/generate_fixtures.py`
+- `tests/test_validate.py`
+- `docs/oracle/arithmetic.md`, `docs/oracle/validation.md`
+
+**Commands and results:**
+
+- `python3 scripts/generate_fixtures.py` wrote 86 requests (48 train, 16 validation, 22 evaluation) and one local `lexical-generalist` 1.0.0 trace. Recorded host `Linux x86_64 3.12.3`, wall time 0.122 ms, status counts abstain 8, scored 12, timeout 1, no_result 1, scored label matches 10. Seed 17001.
+- `taskforge validate --dataset src/taskforge/data/dataset.json --trace src/taskforge/data/general_trace.json --costs src/taskforge/data/costs/demo.json` exited 0 with `"status": "valid"`, 86 items, 22 trace rows, profile `demo-modeled`.
+- `taskforge validate --dataset src/taskforge/data/invalid/leaked_family.json` exited 2: `template_family_leak: template_family 'hvac-shared-family' appears in splits train and evaluation.`
+- The same entry point also rejected repeated ids, a mixed label dictionary, a missing general-model row, schema 9.9.9, a 2001-character text, and a JSON number used as money.
+- `python3 -m pytest -q`: 13 passed. `ruff check` and `ruff format --check` passed. Installed pins: numpy 2.2.6, scipy 1.18.1, scikit-learn 1.9.1, joblib 1.6.0, threadpoolctl 3.8.0, pytest 8.4.2, ruff 0.14.6.
+
+**Artifact paths:**
+
+- `src/taskforge/data/dataset.json`
+- `src/taskforge/data/general_trace.json`
+- `src/taskforge/data/manifest.json`
+- `src/taskforge/data/costs/`
+- `src/taskforge/data/schemas/`
+- `docs/oracle/arithmetic.md`
+- `docs/oracle/validation.md`
+
+**Open issues:**
+
+- Scoring, training, and the 4,000 / 4,001 report are not implemented yet. The oracle states the expected totals.
+- Regenerating the trace changes host wall times. Tests lock the checked-in checksums.
+
+**Next phase:** P03

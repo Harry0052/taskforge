@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "facilities-work-order-routing",
+  "task_schema_version": "1.0.0",
+  "label_set": [
+    "custodial",
+    "electrical",
+    "hvac",
+    "plumbing"
+  ],
+  "items": [
+    {
+      "item_id": "wo-evalu-custodial-atrium-wax-01",
+      "text": "Atrium floor wax is sticky along the main path.",
+      "label": "custodial",
+      "template_family": "custodial-atrium-wax",
+      "split": "evaluation"
+    },
+    {
+      "item_id": "wo-evalu-custodial-atrium-wax-01",
+      "text": "Repeated id should be rejected before scoring.",
+      "label": "custodial",
+      "template_family": "custodial-atrium-wax",
+      "split": "evaluation"
+    }
+  ]
+}

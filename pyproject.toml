@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taskforge"
+version = "0.1.0"
+description = "Compare a CPU specialist with a pinned general model on quality and lifecycle cost."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "TaskForge contributors" }]
+dependencies = [
+  "numpy==2.2.6",
+  "scipy==1.18.1",
+  "scikit-learn==1.9.1",
+  "joblib==1.6.0",
+  "threadpoolctl==3.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.4.2",
+  "ruff==0.14.6",
+]
+
+[project.scripts]
+taskforge = "taskforge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+taskforge = ["data/**/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]

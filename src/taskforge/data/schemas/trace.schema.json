@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Harry0052/taskforge/schema/trace-1.0.0.json",
+  "title": "TaskForge general-model trace 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "task_id", "task_schema_version", "model", "run", "results"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "task_id": {"const": "facilities-work-order-routing"},
+    "task_schema_version": {"const": "1.0.0"},
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "revision", "provider", "hardware"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1, "maxLength": 80},
+        "revision": {"type": "string", "minLength": 1, "maxLength": 80},
+        "provider": {"type": "string", "minLength": 1, "maxLength": 80},
+        "hardware": {"type": "string", "minLength": 1, "maxLength": 200}
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seed", "started_at", "host", "wall_time_ms_total", "randomness"],
+      "properties": {
+        "seed": {"type": "integer"},
+        "started_at": {"type": "string", "minLength": 1, "maxLength": 40},
+        "host": {"type": "string", "minLength": 1, "maxLength": 200},
+        "wall_time_ms_total": {"type": "number", "minimum": 0},
+        "randomness": {"type": "string", "minLength": 1, "maxLength": 200}
+      }
+    },
+    "results": {
+      "type": "array",
+      "maxItems": 5000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item_id", "output_label", "timeout", "scoring_status", "wall_time_ms", "confidence"],
+        "properties": {
+          "item_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"},
+          "output_label": {
+            "anyOf": [
+              {"enum": ["custodial", "electrical", "hvac", "plumbing"]},
+              {"type": "null"}
+            ]
+          },
+          "timeout": {"type": "boolean"},
+          "scoring_status": {"enum": ["scored", "abstain", "timeout", "no_result"]},
+          "wall_time_ms": {"type": "number", "minimum": 0},
+          "confidence": {"anyOf": [{"type": "number", "minimum": 0, "maximum": 1}, {"type": "null"}]}
+        }
+      }
+    }
+  }
+}
