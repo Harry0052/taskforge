@@ -5,7 +5,7 @@
 | P01 | PASS |
 | P02 | PASS |
 | P03 | PASS |
-| P04 | not started |
+| P04 | PASS |
 | P05 | not started |
 | P06 | not started |
 | P07 | not started |
@@ -111,3 +111,35 @@
 - Specialist training time is host-specific and is not part of the cost arithmetic.
 
 **Next phase:** P04
+
+## P04 — Ship the user workflow and reports
+
+**Phase and status:** P04 PASS
+
+**Files changed:**
+
+- `src/taskforge/cli.py` (`taskforge demo`)
+- `tests/test_demo.py`
+- `README.md`
+- `docs/evidence/p04/report.json`
+- `docs/evidence/p04/report.md`
+
+**Commands and results:**
+
+- `taskforge demo --output docs/evidence/p04` exited 0. Stdout JSON: status `demo-complete`, eligible true, macro-F1 0.808042, equality 4000, first strict saving 4001, currency USD, horizon 12 months, forecast 10000. Stderr: `Human report: .../report.md`.
+- The human report labels analyst-supplied costs and recorded timings separately, and traces item `wo-evalu-hvac-condensate-leak-01` to the dataset text "Condensate leak under the air handler by the east stair." Specialist label hvac, general-model label plumbing.
+- `taskforge demo --dataset src/taskforge/data/invalid/leaked_family.json` exited 2, wrote no report, and printed `template_family_leak` with the instruction to keep the family in one split.
+- A partial trace (`missing_general_trace.json`) exited 2 and named missing id `wo-miss-eval-02`.
+- `pytest`: 26 passed.
+
+**Artifact paths:**
+
+- `docs/evidence/p04/report.md`
+- `docs/evidence/p04/report.json`
+
+**Open issues:**
+
+- Performance budget, dependency advisories, and the validation write-up are still open.
+- The checked-in evidence report includes this host's training milliseconds. A later demo run will differ in those timing fields only.
+
+**Next phase:** P05

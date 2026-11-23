@@ -1,0 +1,588 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "facilities-work-order-routing",
+  "profile_id": "demo-modeled",
+  "currency": "USD",
+  "horizon": "12 months",
+  "forecast_volume": 10000,
+  "variable_cost_mode": "modeled",
+  "quality_gate": {
+    "min_macro_f1": "0.7500",
+    "min_per_class_recall": "0.5000",
+    "specialist_macro_f1": "0.808042",
+    "specialist_min_recall": "0.600000",
+    "passed": true
+  },
+  "recommendation": {
+    "eligible": true,
+    "scenario_shown": true,
+    "reason": "Quality passed. Forecast volume 10000 is at or beyond the first strict saving at request 4001."
+  },
+  "models": {
+    "general": {
+      "name": "lexical-generalist",
+      "revision": "1.0.0",
+      "provider": "local",
+      "provenance": "recorded",
+      "metrics": {
+        "evaluated_items": 22,
+        "macro_f1": "0.577381",
+        "min_recall": "0.333333",
+        "per_label": [
+          {
+            "label": "custodial",
+            "support": 5,
+            "true_positives": 2,
+            "false_positives": 0,
+            "precision": "1.000000",
+            "recall": "0.400000",
+            "f1": "0.571429"
+          },
+          {
+            "label": "electrical",
+            "support": 5,
+            "true_positives": 2,
+            "false_positives": 0,
+            "precision": "1.000000",
+            "recall": "0.400000",
+            "f1": "0.571429"
+          },
+          {
+            "label": "hvac",
+            "support": 6,
+            "true_positives": 2,
+            "false_positives": 0,
+            "precision": "1.000000",
+            "recall": "0.333333",
+            "f1": "0.500000"
+          },
+          {
+            "label": "plumbing",
+            "support": 6,
+            "true_positives": 4,
+            "false_positives": 2,
+            "precision": "0.666667",
+            "recall": "0.666667",
+            "f1": "0.666667"
+          }
+        ],
+        "status_counts": {
+          "scored": 12,
+          "abstain": 8,
+          "timeout": 1,
+          "no_result": 1
+        },
+        "abstentions": 8,
+        "timeouts": 1,
+        "no_results": 1,
+        "denominator": "every evaluation item counts in its gold label support, including abstain, timeout, and no_result"
+      },
+      "review_rate": "0.4545454545454545454545454545",
+      "wall_time_ms_total": 0.122,
+      "hardware": "Linux x86_64 3.12.3"
+    },
+    "specialist": {
+      "name": "tfidf-logistic-regression",
+      "revision": "seed-0",
+      "provenance": "trained-this-run",
+      "threshold": 0.0,
+      "threshold_source": "validation macro-F1, ties take the lower threshold",
+      "validation_macro_f1": "0.753175",
+      "metrics": {
+        "evaluated_items": 22,
+        "macro_f1": "0.808042",
+        "min_recall": "0.600000",
+        "per_label": [
+          {
+            "label": "custodial",
+            "support": 5,
+            "true_positives": 3,
+            "false_positives": 2,
+            "precision": "0.600000",
+            "recall": "0.600000",
+            "f1": "0.600000"
+          },
+          {
+            "label": "electrical",
+            "support": 5,
+            "true_positives": 5,
+            "false_positives": 1,
+            "precision": "0.833333",
+            "recall": "1.000000",
+            "f1": "0.909091"
+          },
+          {
+            "label": "hvac",
+            "support": 6,
+            "true_positives": 6,
+            "false_positives": 1,
+            "precision": "0.857143",
+            "recall": "1.000000",
+            "f1": "0.923077"
+          },
+          {
+            "label": "plumbing",
+            "support": 6,
+            "true_positives": 4,
+            "false_positives": 0,
+            "precision": "1.000000",
+            "recall": "0.666667",
+            "f1": "0.800000"
+          }
+        ],
+        "status_counts": {
+          "scored": 22,
+          "abstain": 0,
+          "timeout": 0,
+          "no_result": 0
+        },
+        "abstentions": 0,
+        "timeouts": 0,
+        "no_results": 0,
+        "denominator": "every evaluation item counts in its gold label support, including abstain, timeout, and no_result"
+      },
+      "review_rate": "0",
+      "train_wall_time_ms": 7.477,
+      "evaluation_wall_time_ms": 0.559,
+      "train_items": 48,
+      "validation_items": 16
+    }
+  },
+  "costs": {
+    "provenance": "analyst-supplied",
+    "note": "Dollar amounts are the cost profile. Wall times above are recorded and are not converted to money.",
+    "baseline": {
+      "fixed_cost": "0.0000",
+      "components": {
+        "labeling": "0.0000",
+        "training": "0.0000",
+        "integration": "0.0000"
+      },
+      "inference_cost_per_request": "0.0180",
+      "review_cost_per_item": "0.2000",
+      "observed_review_rate": "0.4545454545454545454545454545",
+      "variable_cost_per_request": "0.0200",
+      "modeled_variable_cost_per_request": "0.0200",
+      "provenance": "analyst-supplied"
+    },
+    "specialist": {
+      "fixed_cost": "60.0000",
+      "components": {
+        "labeling": "40.0000",
+        "training": "5.0000",
+        "integration": "15.0000"
+      },
+      "inference_cost_per_request": "0.0030",
+      "review_cost_per_item": "0.2000",
+      "observed_review_rate": "0",
+      "variable_cost_per_request": "0.0050",
+      "modeled_variable_cost_per_request": "0.0050",
+      "provenance": "analyst-supplied"
+    },
+    "crossover": {
+      "additional_fixed_cost": "60",
+      "baseline_variable_cost_per_request": "0.02",
+      "specialist_variable_cost_per_request": "0.005",
+      "variable_saving_per_request": "0.015",
+      "equality_requests": 4000,
+      "first_strict_saving_request": 4001,
+      "verified_on_integer_volume": true,
+      "outcome": "finite_crossover",
+      "exact_ratio": "4000",
+      "totals_at_equality": {
+        "requests": "4000",
+        "baseline_total": "80",
+        "specialist_total": "80",
+        "specialist_minus_baseline": "0"
+      },
+      "totals_at_first_strict_saving": {
+        "requests": "4001",
+        "baseline_total": "80.02",
+        "specialist_total": "80.005",
+        "specialist_minus_baseline": "-0.015"
+      },
+      "reason": "Totals are equal at 4000 requests. The first strict specialist saving is request 4001."
+    }
+  },
+  "sensitivity": [
+    {
+      "review_cost_per_item": "0.1000",
+      "provenance": "analyst-supplied review price; observed review rates; quality frozen",
+      "frozen_specialist_macro_f1": "0.808042",
+      "baseline_review_rate": "0.4545454545454545454545454545",
+      "specialist_review_rate": "0",
+      "baseline_variable_cost_per_request": "0.06345454545454545454545454545",
+      "specialist_variable_cost_per_request": "0.0030",
+      "crossover": {
+        "additional_fixed_cost": "60",
+        "baseline_variable_cost_per_request": "0.06345454545454545454545454545",
+        "specialist_variable_cost_per_request": "0.003",
+        "variable_saving_per_request": "0.06045454545454545454545454545",
+        "equality_requests": null,
+        "first_strict_saving_request": 993,
+        "verified_on_integer_volume": true,
+        "outcome": "finite_crossover",
+        "exact_ratio": "992.4812030075187969924812031",
+        "totals_at_first_strict_saving": {
+          "requests": "993",
+          "baseline_total": "63.01036363636363636363636363",
+          "specialist_total": "62.979",
+          "specialist_minus_baseline": "-0.03136363636363636363636363"
+        },
+        "reason": "The cost lines meet between requests. The first integer volume with a strict specialist saving is 993."
+      }
+    },
+    {
+      "review_cost_per_item": "0.5000",
+      "provenance": "analyst-supplied review price; observed review rates; quality frozen",
+      "frozen_specialist_macro_f1": "0.808042",
+      "baseline_review_rate": "0.4545454545454545454545454545",
+      "specialist_review_rate": "0",
+      "baseline_variable_cost_per_request": "0.2452727272727272727272727272",
+      "specialist_variable_cost_per_request": "0.0030",
+      "crossover": {
+        "additional_fixed_cost": "60",
+        "baseline_variable_cost_per_request": "0.2452727272727272727272727272",
+        "specialist_variable_cost_per_request": "0.003",
+        "variable_saving_per_request": "0.2422727272727272727272727272",
+        "equality_requests": null,
+        "first_strict_saving_request": 248,
+        "verified_on_integer_volume": true,
+        "outcome": "finite_crossover",
+        "exact_ratio": "247.6547842401500938086303941",
+        "totals_at_first_strict_saving": {
+          "requests": "248",
+          "baseline_total": "60.82763636363636363636363635",
+          "specialist_total": "60.744",
+          "specialist_minus_baseline": "-0.08363636363636363636363635"
+        },
+        "reason": "The cost lines meet between requests. The first integer volume with a strict specialist saving is 248."
+      }
+    }
+  ],
+  "support": {
+    "custodial": 5,
+    "electrical": 5,
+    "hvac": 6,
+    "plumbing": 6
+  },
+  "example": {
+    "item_id": "wo-evalu-hvac-condensate-leak-01",
+    "template_family": "hvac-condensate-leak",
+    "text": "Condensate leak under the air handler by the east stair.",
+    "gold": "hvac",
+    "specialist_label": "hvac",
+    "specialist_status": "scored",
+    "general_label": "plumbing",
+    "general_status": "scored",
+    "how_to_trace": "Find this item_id in the dataset file recorded under inputs.dataset."
+  },
+  "items": [
+    {
+      "item_id": "wo-evalu-custodial-atrium-wax-01",
+      "template_family": "custodial-atrium-wax",
+      "text": "Atrium floor wax is sticky along the main path.",
+      "gold": "custodial",
+      "specialist_label": "electrical",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.272016,
+      "general_label": null,
+      "general_status": "abstain",
+      "general_wall_time_ms": 0.013,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-custodial-atrium-wax-02",
+      "template_family": "custodial-atrium-wax",
+      "text": "Sticky wax on the atrium floor is catching shoes.",
+      "gold": "custodial",
+      "specialist_label": "hvac",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.310095,
+      "general_label": null,
+      "general_status": "abstain",
+      "general_wall_time_ms": 0.007,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-custodial-cafe-spill-01",
+      "template_family": "custodial-cafe-spill",
+      "text": "Cafe spill near the pastry case is still wet.",
+      "gold": "custodial",
+      "specialist_label": "custodial",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.383586,
+      "general_label": "custodial",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.007,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-custodial-cafe-spill-02",
+      "template_family": "custodial-cafe-spill",
+      "text": "Wet spill by the cafe pastry case needs a cone.",
+      "gold": "custodial",
+      "specialist_label": "custodial",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.382829,
+      "general_label": "custodial",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.006,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-custodial-unreadable-01",
+      "template_family": "custodial-unreadable",
+      "text": "Loading dock spill note is an unreadable attachment from the night crew.",
+      "gold": "custodial",
+      "specialist_label": "custodial",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.440105,
+      "general_label": null,
+      "general_status": "no_result",
+      "general_wall_time_ms": 0.001,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-electrical-office-outlet-01",
+      "template_family": "electrical-office-outlet",
+      "text": "Office outlet behind the plotter has no power.",
+      "gold": "electrical",
+      "specialist_label": "electrical",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.386539,
+      "general_label": "electrical",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.005,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-electrical-office-outlet-02",
+      "template_family": "electrical-office-outlet",
+      "text": "The plotter outlet in the office is dead.",
+      "gold": "electrical",
+      "specialist_label": "electrical",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.35708,
+      "general_label": "electrical",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-electrical-priority-hold-01",
+      "template_family": "electrical-priority-hold",
+      "text": "Copy room breaker is hot and the ticket says priority hold until the vendor calls back.",
+      "gold": "electrical",
+      "specialist_label": "electrical",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.461404,
+      "general_label": null,
+      "general_status": "timeout",
+      "general_wall_time_ms": 0.001,
+      "general_timeout": true
+    },
+    {
+      "item_id": "wo-evalu-electrical-warehouse-ballast-01",
+      "template_family": "electrical-warehouse-ballast",
+      "text": "Warehouse ballast will not strike over aisle four.",
+      "gold": "electrical",
+      "specialist_label": "electrical",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.331329,
+      "general_label": null,
+      "general_status": "abstain",
+      "general_wall_time_ms": 0.006,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-electrical-warehouse-ballast-02",
+      "template_family": "electrical-warehouse-ballast",
+      "text": "Aisle four warehouse ballast flickers and then stays dark.",
+      "gold": "electrical",
+      "specialist_label": "electrical",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.340818,
+      "general_label": null,
+      "general_status": "abstain",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-hvac-clinic-duct-01",
+      "template_family": "hvac-clinic-duct",
+      "text": "Clinic duct airflow died after lunch.",
+      "gold": "hvac",
+      "specialist_label": "hvac",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.340082,
+      "general_label": "hvac",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-hvac-clinic-duct-02",
+      "template_family": "hvac-clinic-duct",
+      "text": "After lunch the clinic duct has no airflow at the nurses station.",
+      "gold": "hvac",
+      "specialist_label": "hvac",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.34878,
+      "general_label": "hvac",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.005,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-hvac-condensate-leak-01",
+      "template_family": "hvac-condensate-leak",
+      "text": "Condensate leak under the air handler by the east stair.",
+      "gold": "hvac",
+      "specialist_label": "hvac",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.404458,
+      "general_label": "plumbing",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.005,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-hvac-condensate-leak-02",
+      "template_family": "hvac-condensate-leak",
+      "text": "East stair air handler has a condensate leak on the pad.",
+      "gold": "hvac",
+      "specialist_label": "hvac",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.463709,
+      "general_label": "plumbing",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.005,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-hvac-lab-condenser-01",
+      "template_family": "hvac-lab-condenser",
+      "text": "The lab condenser is iced over and the coil is blocked.",
+      "gold": "hvac",
+      "specialist_label": "hvac",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.303088,
+      "general_label": null,
+      "general_status": "abstain",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-hvac-lab-condenser-02",
+      "template_family": "hvac-lab-condenser",
+      "text": "Ice on the lab condenser is stopping the coil.",
+      "gold": "hvac",
+      "specialist_label": "hvac",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.390529,
+      "general_label": null,
+      "general_status": "abstain",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-plumbing-cafe-drain-01",
+      "template_family": "plumbing-cafe-drain",
+      "text": "Cafe drain is holding gray water at the hand sink.",
+      "gold": "plumbing",
+      "specialist_label": "plumbing",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.362451,
+      "general_label": "plumbing",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-plumbing-cafe-drain-02",
+      "template_family": "plumbing-cafe-drain",
+      "text": "The cafe hand sink drain will not empty.",
+      "gold": "plumbing",
+      "specialist_label": "plumbing",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.422598,
+      "general_label": "plumbing",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-plumbing-dock-valve-01",
+      "template_family": "plumbing-dock-valve",
+      "text": "The dock sink valve is seized and will not isolate.",
+      "gold": "plumbing",
+      "specialist_label": "plumbing",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.395284,
+      "general_label": null,
+      "general_status": "abstain",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-plumbing-dock-valve-02",
+      "template_family": "plumbing-dock-valve",
+      "text": "Seized valve at the dock sink needs a replacement.",
+      "gold": "plumbing",
+      "specialist_label": "custodial",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.338449,
+      "general_label": null,
+      "general_status": "abstain",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-plumbing-hall-toilet-01",
+      "template_family": "plumbing-hall-toilet",
+      "text": "Hall toilet by the conference room is clogged.",
+      "gold": "plumbing",
+      "specialist_label": "plumbing",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.286233,
+      "general_label": "plumbing",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    },
+    {
+      "item_id": "wo-evalu-plumbing-hall-toilet-02",
+      "template_family": "plumbing-hall-toilet",
+      "text": "Conference hall toilet clogged before the tour.",
+      "gold": "plumbing",
+      "specialist_label": "custodial",
+      "specialist_status": "scored",
+      "specialist_confidence": 0.312213,
+      "general_label": "plumbing",
+      "general_status": "scored",
+      "general_wall_time_ms": 0.004,
+      "general_timeout": false
+    }
+  ],
+  "timings": {
+    "provenance": "recorded",
+    "general_trace_wall_time_ms_total": 0.122,
+    "general_trace_host": "Linux x86_64 3.12.3",
+    "specialist_train_wall_time_ms": 7.477,
+    "specialist_evaluation_wall_time_ms": 0.559,
+    "analysis_host": "Linux x86_64 3.12.3"
+  },
+  "limitations": [
+    "One four-label synthetic task. Results do not transfer to other label sets.",
+    "The general model is the pinned lexical-generalist trace, not a hosted LLM.",
+    "Cost dollars are analyst-supplied assumptions for the stated horizon.",
+    "A passing quality gate is required before the specialist is marked eligible.",
+    "The linear export is for inspection. This run retrained the specialist and did not load it."
+  ],
+  "inputs": {
+    "dataset": "/workspace/src/taskforge/data/dataset.json",
+    "trace": "/workspace/src/taskforge/data/general_trace.json",
+    "costs": "/workspace/src/taskforge/data/costs/demo.json"
+  }
+}

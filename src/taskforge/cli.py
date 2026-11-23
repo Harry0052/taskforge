@@ -48,6 +48,23 @@ def build_parser() -> argparse.ArgumentParser:
     analyze.add_argument(
         "--output", required=True, type=Path, help="Directory for report.json and report.md"
     )
+    demo = sub.add_parser(
+        "demo",
+        help="Train on the shipped sample, align the frozen general-model trace, and write a report",
+    )
+    demo.add_argument("--dataset", type=Path, help="Defaults to the shipped synthetic work orders")
+    demo.add_argument(
+        "--trace", type=Path, help="Defaults to the recorded lexical-generalist trace"
+    )
+    demo.add_argument(
+        "--costs", type=Path, help="Defaults to the modeled 60 / 0.020 / 0.005 profile"
+    )
+    demo.add_argument(
+        "--output",
+        type=Path,
+        default=Path("reports/demo"),
+        help="Directory for report.json and report.md (default: reports/demo)",
+    )
     return parser
 
 
@@ -75,6 +92,32 @@ def main(argv: list[str] | None = None) -> int:
                 "equality_requests": crossover["equality_requests"],
                 "first_strict_saving_request": crossover["first_strict_saving_request"],
             }
+            json.dump(summary, sys.stdout, indent=2, sort_keys=True)
+            sys.stdout.write("\n")
+            return 0
+        if args.command == "demo":
+            data = Path(__file__).resolve().parent / "data"
+            dataset = args.dataset or data / "dataset.json"
+            trace = args.trace or data / "general_trace.json"
+            costs = args.costs or data / "costs" / "demo.json"
+            result = analyze_paths(dataset, trace, costs)
+            paths = write_report(result, args.output)
+            crossover = result["costs"]["crossover"]
+            summary = {
+                "status": "demo-complete",
+                "report": paths["report_json"],
+                "summary": paths["report_md"],
+                "eligible": result["recommendation"]["eligible"],
+                "quality_gate_passed": result["quality_gate"]["passed"],
+                "specialist_macro_f1": result["quality_gate"]["specialist_macro_f1"],
+                "outcome": crossover["outcome"],
+                "equality_requests": crossover["equality_requests"],
+                "first_strict_saving_request": crossover["first_strict_saving_request"],
+                "currency": result["currency"],
+                "horizon": result["horizon"],
+                "forecast_volume": result["forecast_volume"],
+            }
+            print(f"Human report: {paths['report_md']}", file=sys.stderr)
             json.dump(summary, sys.stdout, indent=2, sort_keys=True)
             sys.stdout.write("\n")
             return 0

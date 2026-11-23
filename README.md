@@ -22,6 +22,40 @@ python -m pip install -r requirements.txt
 python -m pip install -e . --no-deps
 ```
 
+## Demo
+
+```bash
+taskforge demo
+```
+
+That trains the specialist on the shipped work orders, scores the recorded general-model trace on the same evaluation ids, and writes:
+
+- `reports/demo/report.md` — human summary
+- `reports/demo/report.json` — the same figures in the output schema
+- `reports/demo/specialist-export.json` — linear coefficients for inspection, not loaded on the next run
+
+Stdout is a stable JSON summary. The path to the human report is printed on stderr. Exit 0 means the run finished. `eligible` in the JSON is the recommendation; a finished run can still be ineligible when the quality gate fails or the forecast is before the crossover.
+
+On this fixture the modeled profile is an extra 60.00 USD fixed, 0.020 USD baseline per request, and 0.005 USD specialist per request. With the quality gate passed, totals tie at 4,000 requests and the specialist is strictly cheaper at 4,001. Dollar fields are analyst-supplied. Wall times are recorded beside them and are not turned into prices.
+
+Use your own files with the same command flags, or with `analyze` when you want to name the output directory explicitly:
+
+```bash
+taskforge demo \
+  --dataset path/to/dataset.json \
+  --trace path/to/trace.json \
+  --costs path/to/costs.json \
+  --output reports/mine
+```
+
+A bad file stops before a report is written. For example:
+
+```bash
+taskforge demo --dataset src/taskforge/data/invalid/leaked_family.json
+```
+
+exits 2 and prints `template_family_leak` plus what to change. `taskforge --help` and `taskforge demo --help` list the flags.
+
 ## Validate the shipped fixture
 
 ```bash
